@@ -6,5 +6,6 @@ class CreateForumThreads < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :forum_threads, :user_id,                unique: true
   end
 end
