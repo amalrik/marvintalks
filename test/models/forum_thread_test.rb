@@ -2,17 +2,15 @@
 #
 # Table name: forum_threads
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer
-#  subject         :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  conversation_id :integer
+#  id               :integer          not null, primary key
+#  subject          :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  parent_thread_id :integer
 #
 # Indexes
 #
-#  index_forum_threads_on_conversation_id  (conversation_id)
-#  index_forum_threads_on_user_id          (user_id) UNIQUE
+#  index_forum_threads_on_parent_thread_id  (parent_thread_id)
 #
 
 require 'test_helper'

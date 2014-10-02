@@ -1,13 +1,14 @@
 class ForumThreadsController < ApplicationController
 
   def index
-    @forum_threads = ForumThread.orphan()
+    @forum_threads = ForumThread.orphan().paginate(:page => params[:page])
     @child_thread  = ForumThread.new
   end
 
   def show
     @forum_thread = ForumThread.includes(:child_threads).find(params[:id])
-    @child_thread = ForumThread.new user: @forum_thread.user, parent_thread: @forum_thread
+    @child_threads= @forum_thread.child_threads.paginate(:page => params[:page], :per_page => 5)
+    @child_thread = ForumThread.new parent_thread: @forum_thread
   end
 
   def new
