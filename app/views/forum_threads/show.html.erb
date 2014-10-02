@@ -1,0 +1,7 @@
+<h1><%= "Lista de respostas da conversa #{@forum_thread.subject}" %></h1>
+
+<ul class="child_threads_list">
+  <%= render :partial => 'child_thread', :collection => @forum_thread.child_threads %>
+</ul>
+
+<%= render 'form_reply' %>

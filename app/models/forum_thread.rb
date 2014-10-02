@@ -21,4 +21,6 @@ class ForumThread < ActiveRecord::Base
 
   has_many :child_threads, :class_name => "ForumThread", :foreign_key => "parent_thread_id"
   belongs_to :parent_thread, :class_name => "ForumThread"
+
+  scope :orphan, -> { where(parent_thread: nil) }
 end

@@ -9,7 +9,34 @@
 <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-<%= yield %>
 
+    <div id="wrapper">
+        <div id="top_nav">
+            <h1>
+              <%= link_to root_path do %>
+                <%= image_tag("logo.jpg", :size => '50x50') %>
+                <span> Marvin Talks forum to the galaxy </span>
+              <%end%>
+            </h1>
+            
+            <%# if current_user %>
+            <%# link_to "Edit Profile", edit_user_registration_url(current_user.id)%> 
+            <%# link_to "Logout", :logout %>
+            <%# else %>
+            <%# link_to "Register", new_user_registration_path %>  
+            <%# link_to "Login", destroy_user_session_path %>
+            <%# end %>
+            <div class="bclear"></div>
+        </div>
+        
+    
+        <div id="content">
+            <%= yield %>
+        </div>
+ 
+        <div id="footer">
+ 
+        </div>
+    </div>
 </body>
 </html>

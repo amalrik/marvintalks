@@ -29,6 +29,8 @@ gem 'devise',        '~> 3.3.0'
 
 group :development do 
   gem 'annotate'
+  gem 'pry'
+  gem 'bullet', '~> 4.13.2'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

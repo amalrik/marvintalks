@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930065102) do
+ActiveRecord::Schema.define(version: 20141001203246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: true do |t|
+    t.integer  "parent_forum_thread_id"
+    t.integer  "child_forum_thread_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations", ["child_forum_thread_id"], name: "index_conversations_on_child_forum_thread_id", using: :btree
+  add_index "conversations", ["parent_forum_thread_id"], name: "index_conversations_on_parent_forum_thread_id", using: :btree
 
   create_table "forum_threads", force: true do |t|
     t.integer  "user_id"

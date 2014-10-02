@@ -1,2 +1,13 @@
-<h1>ForumThreads#index</h1>
-<p>Find me in app/views/forum_threads/index.html.erb</p>
+<h1 id="page_title">Main Thread Board</h1>
+
+<table>
+  <tr>
+    <th align="left">Title</th>
+  </tr>
+ 
+<% @forum_threads.each do |thread| %>
+  <tr>
+    <td><%= thread_link "#{thread.subject}", "#{thread.id}" %></td>
+  </tr>
+<% end %>
+</table>
