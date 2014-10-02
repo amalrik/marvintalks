@@ -41,6 +41,6 @@ class ForumThread < ActiveRecord::Base
   end
 
   def bad_word?(word) 
-    Rails.application.config.blacklist.split(" ").include?(word)
+    Rails.application.config.blacklist.include?(word)
   end
 end

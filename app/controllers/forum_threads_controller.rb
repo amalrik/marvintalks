@@ -6,7 +6,7 @@ class ForumThreadsController < ApplicationController
   end
 
   def show
-    @forum_thread = ForumThread.find(params[:id])
+    @forum_thread = ForumThread.includes(:child_threads).find(params[:id])
     @child_thread = ForumThread.new user: @forum_thread.user, parent_thread: @forum_thread
   end
 
