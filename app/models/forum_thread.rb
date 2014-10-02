@@ -18,9 +18,29 @@
 class ForumThread < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :subject
+  after_validation :sanitize_words
 
   has_many :child_threads, :class_name => "ForumThread", :foreign_key => "parent_thread_id"
   belongs_to :parent_thread, :class_name => "ForumThread"
 
   scope :orphan, -> { where(parent_thread: nil) }
+
+  private
+  def sanitize_words
+    words = self.subject.split(" ")
+    words.each_with_index do |word,index|
+      if bad_word?(word)
+        words[index] = replace word  
+      end
+    end
+    self.subject = words.join(" ")
+  end
+
+  def replace(word)
+    '*' * word.size
+  end
+
+  def bad_word?(word) 
+    Rails.application.config.blacklist.split(" ").include?(word)
+  end
 end

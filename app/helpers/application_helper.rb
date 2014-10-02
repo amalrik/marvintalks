@@ -1,6 +1,6 @@
 module ApplicationHelper
   def fast_link(text, link, html_options='')
-    %(<a href="#{request.original_url}#{link}">#{text}</a>).html_safe
+    %(<a href="#{request.base_url}/#{link}">#{text}</a>).html_safe
   end
 
   def thread_link(text, link)

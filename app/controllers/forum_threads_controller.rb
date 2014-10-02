@@ -2,6 +2,7 @@ class ForumThreadsController < ApplicationController
 
   def index
     @forum_threads = ForumThread.orphan()
+    @child_thread  = ForumThread.new
   end
 
   def show
@@ -10,22 +11,23 @@ class ForumThreadsController < ApplicationController
   end
 
   def new
-    @child_thread  = ForumThread.new(parent_thread_id: params[:parent_id])
+    @parent_thread  = ForumThread.new(parent_thread_id: params[:parent_id])
   end
 
   def create
-    @parent_thread = ForumThread.find params[:forum_thread][:parent_thread_id]
-    if child = ForumThread.create(forum_thread_child_params)
-      @parent_thread.child_threads << child
-      redirect_to forum_thread_path(@parent_thread)
+    @parent_thread = ForumThread.new(forum_thread_params)
+
+    if @parent_thread.save
+      redirect_to forum_threads_path
     else
-      render 'show'
+      render :new
     end
   end
 
   private
 
-  def forum_thread_child_params
+  def forum_thread_params
     params.require(:forum_thread).permit :parent_thread_id, :subject
   end
+
 end

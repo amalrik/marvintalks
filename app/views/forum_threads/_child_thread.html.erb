@@ -1,7 +1,7 @@
 <li class="child_thread">
   <h3><%= child_thread.subject %> | 
    
-  <span><%= link_to 'Responder', new_forum_thread_path(parent_id: child_thread) %> </span>
+  <span><%= link_to 'Responder', new_conversation_path(parent_id: child_thread) %> </span>
   </h3>
    
   <% unless child_thread.child_threads.empty? %>

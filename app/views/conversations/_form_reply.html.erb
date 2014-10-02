@@ -1,0 +1,16 @@
+<%= form_tag(conversations_path, :method=>'post') do %>
+  <%= hidden_field_tag :parent_thread_id, "#{@forum_thread.id}" %>
+  <ul>
+    <% @child_thread.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= label_tag "Adicionar Resposta".to_sym if @child_thread.parent_thread %><br />
+    <%= text_field_tag :subject %>
+  </p>
+  
+  <p>
+    <%= submit_tag %>
+  </p>
+<% end %>
